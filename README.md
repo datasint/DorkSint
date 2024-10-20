@@ -1,5 +1,5 @@
 # ⚙️ DorkSint
-OSINT Tool. For dork searching - Yandex, Google, DuckDuckGo, Bing!
+OSINT Tool. For dork searching - Yandex, Google, Bing!
 
 ![изображение](https://github.com/user-attachments/assets/d69c4cde-8cae-42c9-bfbe-c3545707c80e)
 
