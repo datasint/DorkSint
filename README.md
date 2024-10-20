@@ -1,10 +1,10 @@
-# DorkSint
+# ⚙️ DorkSint
 OSINT Tool. For dork searching - Yandex, Google, DuckDuckGo, Bing!
 
 ![изображение](https://github.com/user-attachments/assets/d69c4cde-8cae-42c9-bfbe-c3545707c80e)
 
 
-## Installation
+## 🔃 Installation
 
 ```bash
 git clone https://github.com/datasint/DorkSint.git
@@ -22,9 +22,9 @@ pip install -r requirements.txt
 pip install .
 ```
 
-## Usage
+## ⌨️ Usage
 
-To search default dork - "dork":
+To search:
 ```bash
 dorksint user123qwe
 ```
