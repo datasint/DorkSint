@@ -113,8 +113,8 @@ GitHub - https://github.com/datasint/DorkSint
 """)
         print(colored('!', 'red') + ' Invalid usage!\n')
         print(colored('#', 'green') + " Usage:\n")
-        print(colored('#', 'green') + " Default search: 'dorksint {your dork for search}'.")
-        print(colored('#', 'green') + " Search with PDF, WORD, EXCEL, DB files: 'dorksint -f {your dork for search}'.\n")
+        print(colored('#', 'green') + " Default search: 'dorksint user123qwe'.")
+        print(colored('#', 'green') + " Search with PDF, WORD, EXCEL, DB files: 'dorksint -f user123qwe'.\n")
         return
 
     query = ' '.join(args.query)
