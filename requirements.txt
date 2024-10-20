@@ -1,0 +1,5 @@
+aiohttp
+bs4
+termcolor
+asyncio
+fake-useragent
