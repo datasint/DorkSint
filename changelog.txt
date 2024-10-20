@@ -1,0 +1,6 @@
+ _
+| v1.0.6 Change Log:
+| - The DuckDuckGo search was removed because it did not produce results.
+| + Added new file-types - 'mdb', 'accdb', 'sqlite', 'psql' for -f search.
+| + Added the fake_useragent library for header generation (pip install fake-useragent).
+| + Instead of 'requests', there will now be 'aiohttp' lib. This has increased the speed of work!
