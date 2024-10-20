@@ -1,7 +1,8 @@
 # DorkSint
 OSINT Tool. For dork searching - Yandex, Google, DuckDuckGo, Bing!
 
-![изображение](https://github.com/user-attachments/assets/e6adcc51-c96d-4673-9a56-37913d01812f)
+![изображение](https://github.com/user-attachments/assets/158b8dec-802a-414c-8fb6-9bb3abb07e09)
+
 
 
 ## Installation
