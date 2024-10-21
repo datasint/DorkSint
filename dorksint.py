@@ -5,6 +5,7 @@ import asyncio
 
 from bs4 import BeautifulSoup
 from termcolor import colored
+from urllib.parse import urlparse
 from fake_useragent import UserAgent
 
 
@@ -81,17 +82,20 @@ async def search_dork_all_engines(dork):
             if results:
                 print(colored('| #', 'green') + f" {engine}:\n")
                 for title, description, link in results:
-                        clickable_link = f"\033]8;;{link}\033\\Click\033]8;;\033\\"
-                        print(f"{colored('+', 'green')} Title: {title}")
-                        print(f"{colored('+', 'green')} Description: {description}")
-                        print(f"{colored('+', 'green')} Site: {clickable_link}\n")
+                    parsed_url = urlparse(link)
+                    domain = parsed_url.netloc  # Extract the domain from the URL
+                    clickable_link = f"\033]8;;{link}\033\\{domain}\033]8;;\033\\"
+                    print(f"{colored('+', 'green')} Title: {title}")
+                    print(f"{colored('+', 'green')} Description: {description}")
+                    print(f"{colored('+', 'green')} Source: {clickable_link}\n")
                 total_results += len(results)
             else:
-                print(colored('| #', 'red') + f' {engine}: No results found...\n')
+                print(colored('| #', 'red') + f' {engine}: No results found...\n')        
 
     elapsed_time = time.time() - start_time
     print(colored('| #', 'green') + f" Search completed with {colored(total_results, 'green')} results.")
     print(colored('| #', 'green') + f" Search duration: {colored(str(f'{elapsed_time:.2f}') + ' s', 'green')}.")
+
 
 def main():
     parser = argparse.ArgumentParser(description="DorkSint - OSINT Tool", usage="dorksint [-f] {your dork}")
