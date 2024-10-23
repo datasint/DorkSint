@@ -3,6 +3,7 @@ import argparse
 import aiohttp
 import asyncio
 
+
 from bs4 import BeautifulSoup
 from termcolor import colored
 from urllib.parse import urlparse
@@ -24,12 +25,12 @@ SEARCH_ENGINES = {
         'link_selector': 'a',
         'description_selector': 'p'  
     },
-    'Yandex': {
-        'url': "https://yandex.com/search/?text={query}",
-        'result_selector': 'li.serp-item',
-        'title_selector': 'h2',
-        'link_selector': 'a',
-        'description_selector': 'div.text-container'  
+    'Yahoo': {  
+        'url': "https://search.yahoo.com/search?p={query}",
+        'result_selector': 'div.dd.algo',  
+        'title_selector': 'h3.title a',  
+        'link_selector': 'h3.title a', 
+        'description_selector': 'div.compText'  
     }
 }
 
@@ -68,7 +69,7 @@ async def search_dork_all_engines(dork):
     start_time = time.time()
     total_results = 0
 
-    connector = aiohttp.TCPConnector(limit=10)  # Limit to 10 concurrent connections
+    connector = aiohttp.TCPConnector(limit=30)  
     async with aiohttp.ClientSession(connector=connector) as session:
         tasks = [
             search_engine(session, dork, details['url'], details['result_selector'], details['title_selector'],
@@ -83,11 +84,11 @@ async def search_dork_all_engines(dork):
                 print(colored('| #', 'green') + f" {engine}:\n")
                 for title, description, link in results:
                     parsed_url = urlparse(link)
-                    domain = parsed_url.netloc  # Extract the domain from the URL
+                    domain = parsed_url.netloc 
                     clickable_link = f"\033]8;;{link}\033\\{domain}\033]8;;\033\\"
-                    print(f"{colored('+', 'green')} Title: {title}")
-                    print(f"{colored('+', 'green')} Description: {description}")
-                    print(f"{colored('+', 'green')} Source: {clickable_link}\n")
+                    print(f"{colored('|', 'green')} Title: {title}")
+                    print(f"{colored('|', 'green')} Description: {description}")
+                    print(f"{colored('|', 'green')} Source: {clickable_link}\n")
                 total_results += len(results)
             else:
                 print(colored('| #', 'red') + f' {engine}: No results found...\n')        
@@ -98,17 +99,17 @@ async def search_dork_all_engines(dork):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="DorkSint - OSINT Tool", usage="dorksint [-f] {your dork}")
+    parser = argparse.ArgumentParser(description="DorkSINT - OSINT Tool", usage="dorksint [-f] `your dork`")
     parser.add_argument("query", nargs='*', help="The search query (e.g., full name)")
     parser.add_argument("-f", "--filetypes", action="store_true", help="Include file-specific dork search")
 
     args = parser.parse_args()
 
     if not args.query:
-        print(r"""
-GitHub - https://github.com/datasint/DorkSint
+        print(rf"""
+{colored('# ', 'light_magenta')}GitHub - https://github.com/datasint/DorkSint
 
-                   [v.1.0.6]
+                   [v.1.0.7]
   .___                \       _____           .   
   /   `    __.  .___  |   ,  (      ` , __   _/_  
   |    | .'   \ /   \ |  /    `--.  | |'  `.  |   
@@ -117,18 +118,18 @@ GitHub - https://github.com/datasint/DorkSint
 """)
         print(colored('!', 'red') + ' Invalid usage!\n')
         print(colored('#', 'green') + " Usage:\n")
-        print(colored('#', 'green') + " Default search: 'dorksint user123qwe'.")
-        print(colored('#', 'green') + " Search with PDF, WORD, EXCEL, DB files: 'dorksint -f user123qwe'.\n")
+        print(colored('#', 'green') + " Default search:\n`dorksint user123qwe`\n\n")
+        print(colored('#', 'green') + " Search with pdf, word, excel, open db files:\n`dorksint -f user123qwe`\n")
         return
 
     query = ' '.join(args.query)
     query = f'"{query}"'
 
     if args.filetypes:
-        print(r"""
-GitHub - https://github.com/datasint/DorkSint
+        print(rf"""
+{colored('# ', 'light_magenta')}GitHub - https://github.com/datasint/DorkSint
 
-                   [v.1.0.6]
+                   [v.1.0.7]
   .___                \       _____           .   
   /   `    __.  .___  |   ,  (      ` , __   _/_  
   |    | .'   \ /   \ |  /    `--.  | |'  `.  |   
@@ -141,11 +142,12 @@ GitHub - https://github.com/datasint/DorkSint
         specific_dork = f'{query} {file_type_dork}'
         print(colored('| *', 'green') + f" Searching with dork: {query}...\n")
         asyncio.run(search_dork_all_engines(specific_dork))
+    
     else:
-        print(r"""
-GitHub - https://github.com/datasint/DorkSint
+        print(rf"""
+{colored('# ', 'light_magenta')}GitHub - https://github.com/datasint/DorkSint
 
-                   [v.1.0.6]
+                   [v.1.0.7]
   .___                \       _____           .   
   /   `    __.  .___  |   ,  (      ` , __   _/_  
   |    | .'   \ /   \ |  /    `--.  | |'  `.  |   
@@ -155,6 +157,7 @@ GitHub - https://github.com/datasint/DorkSint
         
         print(colored('| *', 'green') + f" Searching with dork: {query}...\n")
         asyncio.run(search_dork_all_engines(query))
+
 
 if __name__ == "__main__":
     main()
