@@ -5,7 +5,7 @@
 OSINT Tool. For dork searching - Yandex, Google, Bing!
 
 
-## 🔃 Installation
+# 🔃 Installation
 
 ```bash
 git clone https://github.com/datasint/DorkSint.git
@@ -23,7 +23,7 @@ pip install -r requirements.txt
 pip install .
 ```
 
-## ⌨️ Usage
+# ⌨️ Usage
 
 To search:
 ```bash
@@ -36,17 +36,17 @@ dorksint -f user123qwe
 ```
 
 
-## Advantages
+# Advantages
 
-# *Open Source Code*
+## *Open Source Code*
 - The project is fully open source, allowing for community-driven improvements and contributions.
 
 
-# *Weekly updates*
+## *Weekly updates*
 - The project is regularly updated with new features, improvements, and bug fixes to ensure it stays relevant.
 
-# *User-Friendly Interface*
+## *User-Friendly Interface*
 - The project provides detailed instructions and easy-to-use options, making it accessible for both beginners and experts in OSINT.
 
-# *Efficient and Fast Results*
+## *Efficient and Fast Results*
 - The tool is optimized for speed, making it ideal for quickly finding information using OSINT dorking.
