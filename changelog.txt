@@ -1,6 +1,12 @@
- _
+ _ 
 | v1.0.6 Change Log:
 | - The DuckDuckGo search was removed because it did not produce results.
-| + Added new file-types - 'mdb', 'accdb', 'sqlite', 'psql' for -f search.
+| + Added new file-types - `mdb`, `accdb`, `sqlite`, `psql` for -f search.
 | + Added the fake_useragent library for header generation (pip install fake-useragent).
 | + Instead of 'requests', there will now be 'aiohttp' lib. This has increased the speed of work!
+
+ _
+| v1.0.7 Change Log:
+| + Added installation files for Windows and Linux systems.
+| + Added -h (help) command argument - `dorksint -h` or `dorksint --help`.
+| * The `Yandex` search engine has been replaced by `Yahoo`.
